@@ -4,6 +4,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.ps1" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
