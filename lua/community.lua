@@ -15,4 +15,6 @@ return {
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.editing-support.vim-visual-multi" },
+  { import = "astrocommunity.motion.nvim-surround" },
 }
