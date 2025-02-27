@@ -17,4 +17,8 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.motion.nvim-surround" },
+  { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.workflow.precognition-nvim" },
+  { import = "astrocommunity.motion.flash-nvim" },
+  { import = "astrocommunity.workflow.hardtime-nvim" },
 }
