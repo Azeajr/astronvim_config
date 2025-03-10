@@ -20,6 +20,6 @@ return {
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.workflow.precognition-nvim" },
   { import = "astrocommunity.motion.flash-nvim" },
-  { import = "astrocommunity.workflow.hardtime-nvim" },
+  -- { import = "astrocommunity.workflow.hardtime-nvim" },
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
 }
