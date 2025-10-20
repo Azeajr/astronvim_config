@@ -31,9 +31,8 @@ return {
         -- python ecosystem
         "ruff",
         "pyright",
-        "pylyzer",
-        "pyrefly",
-        "ty",
+        -- "pyrefly",
+        -- "ty",
 
         -- core Neovim LSPs
         "lua_ls",
@@ -72,6 +71,9 @@ return {
         -- formatters / linters
         "ruff",
         "mypy",
+        "pyright",
+        -- "pyrefly",
+        -- "ty",
         "stylua",
         "prettier",
         "shellcheck",

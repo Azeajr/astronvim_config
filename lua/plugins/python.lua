@@ -1,10 +1,9 @@
 -- 🐍 Python stack for AstroNvim (v5 style)
 -- switch the active LSP by changing ACTIVE_SERVER below (or set $NVIM_PYLS)
--- choices: "pyright" | "pylyzer" | "pyrefly" | "ty"
+-- choices: "pyright" | "pyrefly" | "ty"
 
 -- --- choose here (comment/uncomment one) -----------------------
 local ACTIVE_SERVER = "pyright" -- VSCode/Pylance parity
--- local ACTIVE_SERVER = "pylyzer"  -- fast Rust LSP
 -- local ACTIVE_SERVER = "pyrefly" -- Meta's Rust LSP (early)
 -- local ACTIVE_SERVER = "ty"       -- experimental Rust LSP
 -- ----------------------------------------------------------------
@@ -29,65 +28,54 @@ local SERVER_CONFIGS = {
       },
     },
   },
-  pylyzer = {
-    settings = {
-      python = {
-        analysis = {
-          autoImportCompletions = true,
-          typeCheckingMode = "basic",
-          diagnosticMode = "workspace",
-        },
-      },
-    },
-  },
-  pyrefly = {
-    settings = {
-      python = {
-        analysis = {
-          autoImportCompletions = true,
-          typeCheckingMode = "basic",
-        },
-      },
-    },
-  },
-  ty = {},
+  -- pyrefly = {
+  --   settings = {
+  --     python = {
+  --       analysis = {
+  --         autoImportCompletions = true,
+  --         typeCheckingMode = "basic",
+  --       },
+  --     },
+  --   },
+  -- },
+  -- ty = {},
 }
 
 -- Register experimental servers if lspconfig doesn't provide them
-do
-  local ok, lspconfig = pcall(require, "lspconfig")
-  if ok then
-    local util = require "lspconfig.util"
-
-    -- pyrefly
-    if not lspconfig.pyrefly then
-      lspconfig.pyrefly = {
-        default_config = {
-          cmd = { "pyrefly" },
-          filetypes = { "python" },
-          root_dir = function(fname)
-            return util.root_pattern("pyproject.toml", "setup.cfg", "setup.py", "requirements.txt", ".git")(fname)
-          end,
-          settings = {},
-        },
-      }
-    end
-
-    -- ty
-    if not lspconfig.ty then
-      lspconfig.ty = {
-        default_config = {
-          cmd = { "ty" },
-          filetypes = { "python" },
-          root_dir = function(fname)
-            return util.root_pattern("pyproject.toml", "setup.cfg", "setup.py", "requirements.txt", ".git")(fname)
-          end,
-          settings = {},
-        },
-      }
-    end
-  end
-end
+-- do
+--   local ok, lspconfig = pcall(require, "lspconfig")
+--   if ok then
+--     local util = require "lspconfig.util"
+--
+--     -- pyrefly
+--     if not lspconfig.pyrefly then
+--       lspconfig.pyrefly = {
+--         default_config = {
+--           cmd = { "pyrefly" },
+--           filetypes = { "python" },
+--           root_dir = function(fname)
+--             return util.root_pattern("pyproject.toml", "setup.cfg", "setup.py", "requirements.txt", ".git")(fname)
+--           end,
+--           settings = {},
+--         },
+--       }
+--     end
+--
+--     -- ty
+--     if not lspconfig.ty then
+--       lspconfig.ty = {
+--         default_config = {
+--           cmd = { "ty" },
+--           filetypes = { "python" },
+--           root_dir = function(fname)
+--             return util.root_pattern("pyproject.toml", "setup.cfg", "setup.py", "requirements.txt", ".git")(fname)
+--           end,
+--           settings = {},
+--         },
+--       }
+--     end
+--   end
+-- end
 
 -- safety: warn if ACTIVE_SERVER typo
 if not SERVER_CONFIGS[ACTIVE_SERVER] then
@@ -130,7 +118,7 @@ return {
       -- python-specific formatting preference (Ruff only)
       opts.formatting = extend(opts.formatting or {}, {
         format_on_save = { enabled = true },
-        disabled = { "pyright", "pylyzer", "pyrefly", "ty" },
+        disabled = { "pyright", "pyrefly", "ty" },
         timeout_ms = 3200,
       })
     end,
