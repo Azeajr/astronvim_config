@@ -1,11 +1,12 @@
 -- 🐍 Python stack for AstroNvim (v5 style)
 -- switch the active LSP by changing ACTIVE_SERVER below (or set $NVIM_PYLS)
--- choices: "pyright" | "pyrefly" | "ty"
+-- choices: "pyright" | "pyrefly" | "ty" | nil (ruff only)
 
 -- --- choose here (comment/uncomment one) -----------------------
 local ACTIVE_SERVER = "pyright" -- VSCode/Pylance parity
 -- local ACTIVE_SERVER = "pyrefly" -- Meta's Rust LSP (early)
--- local ACTIVE_SERVER = "ty"       -- experimental Rust LSP
+-- local ACTIVE_SERVER = "ty" -- experimental Rust LSP
+-- local ACTIVE_SERVER = nil -- Ruff only (no extra LSP)
 -- ----------------------------------------------------------------
 
 -- optional env override
@@ -28,17 +29,24 @@ local SERVER_CONFIGS = {
       },
     },
   },
-  -- pyrefly = {
-  --   settings = {
-  --     python = {
-  --       analysis = {
-  --         autoImportCompletions = true,
-  --         typeCheckingMode = "basic",
-  --       },
-  --     },
-  --   },
-  -- },
-  -- ty = {},
+  pyrefly = {
+    settings = {
+      python = {
+        analysis = {
+          autoImportCompletions = true,
+          typeCheckingMode = "basic",
+        },
+      },
+    },
+  },
+  ty = {
+    cmd = { "/home/spark343/.local/share/nvim/mason/bin/ty", "server" },
+    settings = {
+      ty = {
+        -- ty-specific options here if needed
+      },
+    },
+  },
 }
 
 -- Register experimental servers if lspconfig doesn't provide them
@@ -77,8 +85,8 @@ local SERVER_CONFIGS = {
 --   end
 -- end
 
--- safety: warn if ACTIVE_SERVER typo
-if not SERVER_CONFIGS[ACTIVE_SERVER] then
+-- safety: warn if ACTIVE_SERVER typo or nil
+if ACTIVE_SERVER ~= nil and not SERVER_CONFIGS[ACTIVE_SERVER] then
   vim.schedule(
     function() vim.notify("Python: unknown ACTIVE_SERVER = " .. tostring(ACTIVE_SERVER), vim.log.levels.ERROR) end
   )
@@ -97,14 +105,19 @@ return {
       opts.servers = opts.servers or {}
       opts.config = opts.config or {}
 
-      -- ensure both Ruff and the chosen LSP are active
+      -- ensure Ruff is active, and add chosen LSP if specified
       if not vim.tbl_contains(opts.servers, "ruff") then table.insert(opts.servers, "ruff") end
-      if not vim.tbl_contains(opts.servers, ACTIVE_SERVER) then table.insert(opts.servers, ACTIVE_SERVER) end
+      if ACTIVE_SERVER ~= nil and not vim.tbl_contains(opts.servers, ACTIVE_SERVER) then
+        table.insert(opts.servers, ACTIVE_SERVER)
+      end
 
-      -- Ruff config (disable hover so main LSP owns it)
+      -- Ruff config (disable hover only if another LSP is active)
       opts.config = extend(opts.config, {
         ruff = {
-          on_attach = function(client) client.server_capabilities.hoverProvider = false end,
+          on_attach = function(client)
+            -- Only disable hover when another LSP will be providing it
+            if ACTIVE_SERVER ~= nil then client.server_capabilities.hoverProvider = false end
+          end,
         },
       })
 
@@ -161,6 +174,11 @@ return {
       {
         "AstroNvim/astrocore",
         opts = {
+          search = {
+            uv_cache = {
+              command = "fd 'python$' ~/.cache/uv/environments-v2 --full-path --color never",
+            },
+          },
           mappings = {
             n = { ["<Leader>lv"] = { "<Cmd>VenvSelect<CR>", desc = "Select VirtualEnv" } },
           },
