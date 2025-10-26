@@ -1,3 +1,4 @@
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 -- AstroLSP: customize the LSP layer of AstroNvim (v5-compliant)
 -- Docs: :h astrolsp
 

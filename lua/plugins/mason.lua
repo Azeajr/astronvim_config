@@ -28,12 +28,6 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed or {}, {
-        -- python ecosystem
-        "ruff", -- always installed (can be used standalone)
-        "pyright", -- optional additional Python LSP
-        -- "pyrefly",  -- optional additional Python LSP
-        -- "ty",       -- optional additional Python LSP
-
         -- core Neovim LSPs
         "lua_ls",
         "bashls",
@@ -68,12 +62,6 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed or {}, {
-        -- formatters / linters
-        "ruff", -- always installed (can be used standalone)
-        "mypy",
-        -- "pyright", -- optional additional Python LSP
-        -- "pyrefly",  -- optional additional Python LSP
-        -- "ty",       -- optional additional Python LSP
         "stylua",
         "prettier",
         "shellcheck",
