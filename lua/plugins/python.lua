@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/plugins/python_stack_ruff_pyright.lua
+-- ~/.config/nvim/lua/plugins/python.lua
 return {
   {
     "AstroNvim/astrolsp",

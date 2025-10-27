@@ -2,7 +2,6 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
-  -- { import = "astrocommunity.pack.python-ruff" },
   -- { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.ps1" },
   { import = "astrocommunity.pack.markdown" },
@@ -17,7 +16,6 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.motion.nvim-surround" },
-  -- { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.workflow.precognition-nvim" },
   { import = "astrocommunity.motion.flash-nvim" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
