@@ -1,37 +1,29 @@
--- AstroUI: control theming, highlights, and interface icons
--- Docs: :h astroui
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+
+-- AstroUI provides the basis for configuring the AstroNvim User Interface
+-- Configuration documentation can be found with `:h astroui`
+-- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
+--       as this provides autocomplete and documentation while editing
 
 ---@type LazySpec
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    ------------------------------------------------------------------------------
-    -- Colorscheme
-    ------------------------------------------------------------------------------
-    colorscheme = "astrodark", -- change to "catppuccin-mocha" or "solarized-osaka" if installed
-
-    ------------------------------------------------------------------------------
-    -- Highlights
-    ------------------------------------------------------------------------------
+    -- change colorscheme
+    colorscheme = "astrodark",
+    -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
-      init = {
-        -- global highlight overrides
-        -- Normal = { bg = "none" },
-        -- Comment = { italic = true, fg = "#7c7c7c" },
+      init = { -- this table overrides highlights in all themes
+        -- Normal = { bg = "#000000" },
       },
-      astrodark = {
-        -- theme-specific tweaks
-        -- Normal = { bg = "#0f1117" },
-        -- CursorLine = { bg = "#1b1d26" },
+      astrodark = { -- a table of overrides/changes when applying the astrotheme theme
+        -- Normal = { bg = "#000000" },
       },
     },
-
-    ------------------------------------------------------------------------------
-    -- Icons (flattened for type safety)
-    ------------------------------------------------------------------------------
+    -- Icons can be configured throughout the interface
     icons = {
-      -- LSP spinner (statusline)
+      -- configure the loading of the lsp in the status line
       LSPLoading1 = "⠋",
       LSPLoading2 = "⠙",
       LSPLoading3 = "⠹",
@@ -42,22 +34,6 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
-
-      -- Diagnostics
-      DiagnosticError = " ",
-      DiagnosticWarn = " ",
-      DiagnosticInfo = " ",
-      DiagnosticHint = "󰌵 ",
-
-      -- Git
-      GitAdded = " ",
-      GitModified = " ",
-      GitRemoved = " ",
-
-      -- Misc UI
-      FolderClosed = "",
-      FolderOpen = "",
-      FolderEmpty = "",
     },
   },
 }

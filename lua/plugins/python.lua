@@ -14,7 +14,7 @@ return {
       opts.config = opts.config or {}
 
       -- ensure both Ruff and Pyright are enabled
-      vim.list_extend(opts.servers, { "ruff", "pyright" })
+      vim.list_extend(opts.servers, { "ruff", "pyright", "ty" })
 
       -- Ruff: disable hover so Pyright provides it
       opts.config = extend(opts.config, {
@@ -63,6 +63,7 @@ return {
   {
     "linux-cultist/venv-selector.nvim",
     enabled = vim.fn.executable "fd" == 1 or vim.fn.executable "fdfind" == 1 or vim.fn.executable "fd-find" == 1,
+    ft = "python",
     dependencies = {
       {
         "AstroNvim/astrocore",
@@ -75,7 +76,11 @@ return {
         },
       },
     },
-    opts = {},
+    opts = {
+
+      search = {}, -- if you add your own searches, they go here.
+      options = {}, -- if you add plugin options, they go here.
+    },
     cmd = "VenvSelect",
   },
 }
