@@ -7,14 +7,14 @@ return {
     opts = {
       ---@diagnostic disable: missing-fields
       config = {
-        basedpyright = {
+        pyright = {
           before_init = function(_, c)
             if not c.settings then c.settings = {} end
             if not c.settings.python then c.settings.python = {} end
             c.settings.python.pythonPath = vim.fn.exepath "python"
           end,
           settings = {
-            basedpyright = {
+            pyright = {
               analysis = {
                 typeCheckingMode = "basic",
                 autoImportCompletions = true,
@@ -31,6 +31,8 @@ return {
             },
           },
         },
+        -- ty = {},
+        -- pyrefly = {},
       },
     },
   },
@@ -47,7 +49,10 @@ return {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "pyright" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "pyright",
+        -- "ty",
+      })
     end,
   },
   {
@@ -70,8 +75,13 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed =
-        require("astrocore").list_insert_unique(opts.ensure_installed, { "pyright", "ruff", "mypy", "debugpy" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "pyright",
+        -- "ty",
+        "ruff",
+        "mypy",
+        "debugpy",
+      })
     end,
   },
   {
