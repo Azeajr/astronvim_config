@@ -7,14 +7,14 @@ return {
     opts = {
       ---@diagnostic disable: missing-fields
       config = {
-        pyright = {
+        basedpyright = {
           before_init = function(_, c)
             if not c.settings then c.settings = {} end
             if not c.settings.python then c.settings.python = {} end
             c.settings.python.pythonPath = vim.fn.exepath "python"
           end,
           settings = {
-            pyright = {
+            basedpyright = {
               analysis = {
                 typeCheckingMode = "basic",
                 autoImportCompletions = true,
@@ -50,8 +50,9 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "pyright",
+        "basedpyright",
         -- "ty",
+        -- "pyrefly",
       })
     end,
   },
@@ -76,8 +77,9 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "pyright",
+        "basedpyright",
         -- "ty",
+        -- "pyrefly",
         "ruff",
         "mypy",
         "debugpy",
