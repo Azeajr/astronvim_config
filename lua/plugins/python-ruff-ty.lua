@@ -100,13 +100,16 @@ return {
   },
 
   ------------------------------------------------------------------------------
-  -- none-ls (mypy diagnostics; project-configured)
+  -- none-ls (mypy diagnostics; work device only)
   ------------------------------------------------------------------------------
   {
     "nvimtools/none-ls.nvim",
     optional = true,
     ft = { "python" },
     opts = function(_, opts)
+      -- Only enable mypy on work devices
+      if vim.env.DEVICE ~= "work" then return opts end
+
       local null_ls = require "null-ls"
 
       opts.sources = opts.sources or {}
@@ -115,9 +118,11 @@ return {
         opts.sources,
         null_ls.builtins.diagnostics.mypy.with {
           command = "mypy",
-          -- DO NOT pass mypy flags here; rely entirely on pyproject.toml
+          -- Intentionally rely solely on pyproject.toml
         }
       )
+
+      return opts
     end,
   },
 
