@@ -18,24 +18,19 @@ return {
 
     ---@param opts AstroLSPOpts
     opts = function(_, opts)
-      -- Astro recommends function form when touching list-like tables such as `servers` :contentReference[oaicite:1]{index=1}
       local astrocore = require "astrocore"
       opts.servers = astrocore.list_insert_unique(opts.servers or {}, { "ty", "ruff" })
-      local util = require "lspconfig.util"
-      local py_root = util.root_pattern("pyproject.toml", "setup.cfg", "setup.py", "requirements.txt", ".git")
-
       opts.config = astrocore.extend_tbl(opts.config or {}, {
-        ty = {
-          cmd = { "ty", "server" },
-          filetypes = { "python" },
-          root_dir = py_root,
-          settings = {
-            ty = {
-              -- ty language server settings go here
-            },
-          },
+        ruff = {
+          on_attach = function(client)
+            -- Disable hover to avoid conflicts with ty
+            client.server_capabilities.hoverProvider = false
+          end,
         },
+        -- ty uses built-in lspconfig defaults, no custom config needed
       })
+
+      return opts
     end,
   },
 
@@ -94,7 +89,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        python = { "ruff_organize_imports", "ruff_format" },
+        python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
       },
     },
   },
