@@ -24,4 +24,5 @@ return {
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+  { import = "astrocommunity.note-taking.obsidian-nvim" },
 }
