@@ -6,6 +6,7 @@ return {
     options = {
       opt = {
         wrap = true,
+        colorcolumn = "80",
       },
     },
   },
