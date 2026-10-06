@@ -6,6 +6,8 @@ return {
   { import = "astrocommunity.pack.ps1" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.json" },
+  { import = "astrocommunity.pack.cs" },
+
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.ai.minuet-ai-nvim" },
   { import = "astrocommunity.motion.harpoon" },
