@@ -9,7 +9,6 @@ return {
   { import = "astrocommunity.pack.cs" },
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
-  { import = "astrocommunity.ai.minuet-ai-nvim" },
   { import = "astrocommunity.motion.harpoon" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.yaml" },
