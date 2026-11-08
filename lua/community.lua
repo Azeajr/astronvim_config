@@ -6,7 +6,7 @@ return {
   { import = "astrocommunity.pack.ps1" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.json" },
-  { import = "astrocommunity.pack.cs" },
+  -- C#: lua/plugins/easy-dotnet.lua (replaces astrocommunity.pack.cs)
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.motion.harpoon" },
