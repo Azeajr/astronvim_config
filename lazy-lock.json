@@ -66,7 +66,6 @@
   "typr": { "branch": "main", "commit": "584e4ef34dea25a4035627794322f315b22d1253" },
   "venv-selector.nvim": { "branch": "main", "commit": "cc4bb3975de8835291f9bb45889e96c6b2795fc4" },
   "vim-ps1": { "branch": "master", "commit": "8577ab0ba6bcbcda9d11ae40b2a09ddcb09aea42" },
-  "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" },
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
   "vim-wakatime": { "branch": "master", "commit": "98cb7a8a09f8a0cb225b5955bf491ffb9860569f" },
   "volt": { "branch": "main", "commit": "4351c5cd790a0d39491c4d5c75dd62d7db3d3414" },

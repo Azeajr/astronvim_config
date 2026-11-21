@@ -3,6 +3,14 @@ return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
   opts = {
+    mappings = {
+      n = {
+        ["<C-h>"] = { "<Cmd>wincmd h<CR>", desc = "Focus left split" },
+        ["<C-k>"] = { "<Cmd>wincmd k<CR>", desc = "Focus upper split" },
+        ["<C-l>"] = { "<Cmd>wincmd l<CR>", desc = "Focus right split" },
+        ["<C-\\>"] = { "<Cmd>wincmd p<CR>", desc = "Focus previous split" },
+      },
+    },
     options = {
       opt = {
         wrap = true,
